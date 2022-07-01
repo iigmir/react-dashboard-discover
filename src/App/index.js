@@ -9,12 +9,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 const drawerWidth = 240;
 
 export default function PermanentDrawerLeft() {
-  return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <TheHeader drawerWidth={drawerWidth} />
-      <AsideMenu drawerWidth={drawerWidth} />
-      <MainBox />
-    </Box>
-  );
+    return (
+        <Box sx={{ display: 'flex' }}>
+            <CssBaseline />
+            <TheHeader drawerWidth={drawerWidth} />
+            <AsideMenu drawerWidth={drawerWidth} />
+            <MainBox />
+        </Box>
+    );
 }
