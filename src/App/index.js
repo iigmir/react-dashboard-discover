@@ -6,9 +6,8 @@ import AsideMenu from "./AsideMenu";
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 
-const drawerWidth = 240;
-
 export default function PermanentDrawerLeft() {
+    const drawerWidth = 240;
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
