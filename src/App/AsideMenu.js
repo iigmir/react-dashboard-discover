@@ -1,3 +1,4 @@
+// MUI components
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
@@ -7,7 +8,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
+// MUI Icons
 import MailIcon from "@mui/icons-material/Mail";
+import HomeIcon from "@mui/icons-material/Home";
+// Other
+import { Link } from "react-router-dom";
 
 export default function AsideMenu(props) {
     return (<Drawer
@@ -23,6 +28,19 @@ export default function AsideMenu(props) {
         anchor="left"
     >
         <Toolbar />
+        <Divider />
+        <List>
+            <Link to="/">
+                <ListItem disablePadding>
+                    <ListItemButton>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Home" />
+                    </ListItemButton>
+                </ListItem>
+            </Link>
+        </List>
         <Divider />
         <List>
             {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
