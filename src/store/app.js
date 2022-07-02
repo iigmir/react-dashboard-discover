@@ -14,6 +14,5 @@ export const ReduxStoreApp = createSlice({
 
 // Redux state and action APIs
 export const { SET_list } = ReduxStoreApp.actions;
-// export const ReduxList = (state) => state.list;
 // Reducers
 export default ReduxStoreApp.reducer;
