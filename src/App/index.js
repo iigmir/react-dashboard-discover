@@ -1,19 +1,27 @@
-import * as React from 'react';
+// Packages
+import React from "react";
+import { Box, CssBaseline } from "@mui/material";
+// My components
 import TheHeader from "./TheHeader";
 import MainBox from "./MainBox";
 import AsideMenu from "./AsideMenu";
-// Other
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 
-export default function PermanentDrawerLeft() {
-    const drawerWidth = 240;
-    return (
-        <Box sx={{ display: 'flex' }}>
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            drawerWidth: 240,
+            sx: {
+                display: "flex"
+            }
+        };
+    }
+    render() {
+        return (<Box sx={this.state.sx}>
             <CssBaseline />
-            <TheHeader drawerWidth={drawerWidth} />
-            <AsideMenu drawerWidth={drawerWidth} />
+            <TheHeader drawerWidth={this.state.drawerWidth} />
+            <AsideMenu drawerWidth={this.state.drawerWidth} />
             <MainBox />
-        </Box>
-    );
+        </Box>);
+    }
 }
