@@ -2,11 +2,20 @@ import { Routes, Route, } from "react-router-dom";
 import Toolbar from "@mui/material/Toolbar";
 // Routes
 import Portal from "./Portal/index";
+import Wikipedia from "./Wikipedia/index";
+import Wiktionary from "./Wiktionary/index";
+import Wikidata from "./Wikidata/index";
+// Other routes
+import Error404 from "./AlterSystemPages/404";
 
 const page_routes = [
     { path: "/", element: <Portal /> },
+    { path: "/wikipedia", element: <Wikipedia /> },
+    { path: "/wiktionary", element: <Wiktionary /> },
+    { path: "/wikidata", element: <Wikidata /> },
     // * should at last item
-    { path: "*", element: <Portal /> },
+    { path: "/404", element: <Error404 /> },
+    { path: "*", element: <Error404 /> },
 ];
 
 export default function RouterView() {

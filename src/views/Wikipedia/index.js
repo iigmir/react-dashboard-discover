@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
-export default class Portal extends React.Component {
+export default class Wikipedia extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
