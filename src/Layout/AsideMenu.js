@@ -53,7 +53,7 @@ export default class AsideMenu extends React.Component {
             <Toolbar />
             <Divider />
             <List>
-                { <ListLink item={{ path: "/", text: "Home", icon: <HomeIcon /> }} /> }
+                { <ListLink key="/" item={{ path: "/", text: "Home", icon: <HomeIcon /> }} /> }
             </List>
             <Divider />
             <List>
