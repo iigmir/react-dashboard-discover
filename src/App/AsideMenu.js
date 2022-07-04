@@ -1,3 +1,4 @@
+import React from "react";
 // MUI components
 import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
@@ -14,58 +15,51 @@ import HomeIcon from "@mui/icons-material/Home";
 // Other
 import { Link } from "react-router-dom";
 
-export default function AsideMenu(props) {
-    return (<Drawer
-        sx={{
-            width: props.drawerWidth,
-            flexShrink: 0,
-            "& .MuiDrawer-paper": {
-                width: props.drawerWidth,
-                boxSizing: "border-box",
-            },
-        }}
-        variant="permanent"
-        anchor="left"
-    >
-        <Toolbar />
-        <Divider />
-        <List>
-            <Link to="/">
-                <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Home" />
-                    </ListItemButton>
-                </ListItem>
-            </Link>
-        </List>
-        <Divider />
-        <List>
-            {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItemButton>
-                </ListItem>
-            ))}
-        </List>
-        <Divider />
-        <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItemButton>
-                </ListItem>
-            ))}
-        </List>
-    </Drawer>)
+export default class AsideMenu extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+    render() {
+        return (<Drawer
+            sx={{
+                width: this.props.drawerWidth,
+                flexShrink: 0,
+                "& .MuiDrawer-paper": {
+                    width: this.props.drawerWidth,
+                    boxSizing: "border-box",
+                },
+            }}
+            variant="permanent"
+            anchor="left"
+        >
+            <Toolbar />
+            <Divider />
+            <List>
+                <Link to="/">
+                    <ListItem disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <HomeIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Home" />
+                        </ListItemButton>
+                    </ListItem>
+                </Link>
+            </List>
+            <Divider />
+            <List>
+                {["Wikipedia", "Wiktionary", "Wikidata", "Drafts"].map((text, index) => (
+                    <ListItem key={text} disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            </ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+        </Drawer>);
+    }
 }
