@@ -6,7 +6,7 @@ import TheHeader from "./TheHeader";
 import MainBox from "./MainBox";
 import AsideMenu from "./AsideMenu";
 
-export default class App extends React.Component {
+export default class Layout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
