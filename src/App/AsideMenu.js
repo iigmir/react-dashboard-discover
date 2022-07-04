@@ -27,19 +27,6 @@ function ListLink(props = { item: { path: "/", text: "Empty", icon: <InboxIcon /
     </Link>)
 }
 
-function HomapageLink() {
-    return (<Link to="/">
-        <ListItem disablePadding>
-            <ListItemButton>
-                <ListItemIcon>
-                    <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-            </ListItemButton>
-        </ListItem>
-    </Link>);
-}
-
 export default class AsideMenu extends React.Component {
     constructor(props) {
         super(props);
@@ -63,7 +50,7 @@ export default class AsideMenu extends React.Component {
     render() {
         return (<Drawer sx={this.state.sx} variant="permanent" anchor="left">
             <List>
-                { <HomapageLink /> }
+                { <ListLink item={{ path: "/", text: "Home", icon: <HomeIcon /> }} /> }
             </List>
             <Divider />
             <List>
