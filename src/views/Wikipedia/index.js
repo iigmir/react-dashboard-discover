@@ -9,7 +9,9 @@ export default class Wikipedia extends React.Component {
     }
     render() {
         return (<div>
-            <h1>Wikipedia</h1>
+            <h1>
+                <a href="https://en.wikipedia.org/wiki/Wikipedia" target="_blank" rel="noreferrer">Wikipedia</a>
+            </h1>
             <Typography paragraph>
                 <Link to="/">Consequat</Link> mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
                 eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
