@@ -1,7 +1,6 @@
 import React from "react";
 // MUI components
 import Drawer from "@mui/material/Drawer";
-import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
@@ -18,23 +17,19 @@ import { Link } from "react-router-dom";
 export default class AsideMenu extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
-    }
-    render() {
-        return (<Drawer
-            sx={{
-                width: this.props.drawerWidth,
+        this.state = {
+            sx: {
+                width: props.drawerWidth,
                 flexShrink: 0,
                 "& .MuiDrawer-paper": {
-                    width: this.props.drawerWidth,
+                    width: props.drawerWidth,
                     boxSizing: "border-box",
                 },
-            }}
-            variant="permanent"
-            anchor="left"
-        >
-            <Toolbar />
-            <Divider />
+            },
+        };
+    }
+    render() {
+        return (<Drawer sx={this.state.sx} variant="permanent" anchor="left">
             <List>
                 <Link to="/">
                     <ListItem disablePadding>
