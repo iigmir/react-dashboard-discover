@@ -13,8 +13,8 @@ const page_routes = [
     { path: "/wikipedia", element: <Wikipedia /> },
     { path: "/wiktionary", element: <Wiktionary /> },
     { path: "/wikidata", element: <Wikidata /> },
-    // * should at last item
     { path: "/404", element: <Error404 /> },
+    // * should at last item
     { path: "*", element: <Error404 /> },
 ];
 

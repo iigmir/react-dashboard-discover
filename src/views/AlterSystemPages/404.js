@@ -8,7 +8,7 @@ export default class Error404 extends React.Component {
         this.state = {};
     }
     render() {
-        return (<div>
+        return (<div className="error-page-404">
             <h1>404</h1>
             <Typography paragraph>
                 We are sorry, but the page you are looking for is not found.
