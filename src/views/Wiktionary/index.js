@@ -1,12 +1,10 @@
 import React from "react";
-// import { Link } from "react-router-dom";
-import {
-    Typography,
-    TextField,
-    IconButton,
-} from "@mui/material";
+// MUI
+import { TextField, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+// Other
 import "./index.css";
+import { Cards } from "./cards";
 
 export default class Wiktionary extends React.Component {
     constructor(props) {
@@ -65,9 +63,9 @@ export default class Wiktionary extends React.Component {
                     <SearchIcon />
                 </IconButton>
             </form>
-            <Typography paragraph>
-                { JSON.stringify(this.rendered_list) }
-            </Typography>
+            <div className="wiktionary-entries">
+                { this.rendered_list.map( (item, index) => <Cards key={index} item={item} /> ) }
+            </div>
         </div>);
     }
 }
