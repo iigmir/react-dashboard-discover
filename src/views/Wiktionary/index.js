@@ -20,8 +20,7 @@ export default class Wiktionary extends React.Component {
         return `${baseurl}/api/rest_v1/page/definition/${term}`;
     }
     get rendered_list() {
-        const ent = Object.entries( this.state.response );
-        return ent.map( ([languageCode, values]) => ({ languageCode, ...values[0] }) );
+        return Object.entries( this.state.response ).map( ([languageCode, values]) => ({ languageCode, ...values[0] }) );
     }
     // AJAX
     submit(e) {
@@ -57,7 +56,7 @@ export default class Wiktionary extends React.Component {
         this.setState({ term: e.target.value.trim() });
     }
     render() {
-        const cardkey = item => `${item.languageCode}-${item.partOfSpeech.replace(" ", "")}`;
+        const cardkey = item => `${item.languageCode}-${item.partOfSpeech?.replace(" ", "")}`;
         return (<div className="wiktionary-page">
             <h1 className="title">
                 <a href="https://en.wikipedia.org/wiki/Wiktionary" target="_blank" rel="noreferrer">Wiktionary</a>
@@ -75,7 +74,7 @@ export default class Wiktionary extends React.Component {
             </form>
             <div className="wiktionary-entries">
                 <h2>{ this.state.term }</h2>
-                { this.rendered_list.map( (item, index) => <Cards key={cardkey(item)} item={item} /> ) }
+                { this.rendered_list.map( (item) => <Cards key={cardkey(item)} item={item} /> ) }
             </div>
         </div>);
     }

@@ -52,6 +52,9 @@ export function Cards(props =  {
         examples={examples}
         parsedExamples={parsedExamples}
     /> ;
+    if( Array.isArray(definitions) === false ) {
+        return <p>No results</p>;
+    }
     return (<Card className="item">
         <CardContent>
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
