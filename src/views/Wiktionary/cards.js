@@ -1,29 +1,55 @@
-// import * as React from 'react';
 import {
-    // Cards
     Card, CardContent,
     Typography
 } from "@mui/material";
 
-function ListItem(props = { definition: "" }) {
+function TextItem(props = { text: "", className: "" }) {
     const baseurl = `https://en.wiktionary.org`;
     // const other_attrs = `target="_blank" rel="noreferrer"`;
-    // ${other_attrs}
-    const definition = props.definition.replace(/href="\/wiki/g, `href="${baseurl}/wiki`);
+    const text = props.text.replace(/href="\/wiki/g, `href="${baseurl}/wiki`);
     const use_html = (__html = "<span>Hello</span>") => ({ __html });
-    return <li dangerouslySetInnerHTML={use_html(definition)} />;
+    return <span className={props.className} dangerouslySetInnerHTML={use_html(text)} />;
+}
+
+function ExampleList(props = { parsedExamples: [] }) {
+    if( Array.isArray(props.parsedExamples) ) {
+        return <ul>
+            <li>Hello</li>
+        </ul>;
+    }
+    return <span className="examples" />;
+}
+
+function ListItem(props = {
+    definition: "",
+    examples: [],
+    parsedExamples: []
+}) {
+    return <li>
+        <TextItem className="definition" text={props.definition} />
+        <ExampleList parsedExamples={props.parsedExamples} />
+    </li>;
 }
 
 export function Cards(props =  {
     item: {
-        "languageCode": "",
-        "partOfSpeech": "",
-        "language": "",
-        "definitions": [{ definition: "" }]
+        languageCode: "",
+        partOfSpeech: "",
+        language: "",
+        definitions: [{
+            definition: "",
+            examples: [],
+            parsedExamples: []
+        }],
     }
 }) {
     const definitions = props.item.definitions;
-    const definitions_cb = ({ definition }, index) => <ListItem key={index} definition={definition} /> ;
+    const definitions_cb = ({ definition, examples, parsedExamples }, index) => <ListItem
+        key={index}
+        definition={definition}
+        examples={examples}
+        parsedExamples={parsedExamples}
+    /> ;
     return (<Card className="item">
         <CardContent>
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
