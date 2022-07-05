@@ -14,7 +14,9 @@ function TextItem(props = { text: "", className: "" }) {
 function ExampleList(props = { parsedExamples: [] }) {
     if( Array.isArray(props.parsedExamples) ) {
         return <ul>
-            <li>Hello</li>
+            { props.parsedExamples.map( ({ example }, index) => <li key={index}>
+                <TextItem className="example" text={example} />
+            </li> ) }
         </ul>;
     }
     return <span className="examples" />;
