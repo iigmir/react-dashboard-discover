@@ -16,8 +16,13 @@ export default class Wiktionary extends React.Component {
             response: {},
         };
     }
+    ajax_url(term = "") {
+        const baseurl = "https://en.wiktionary.org";
+        return `${baseurl}/api/rest_v1/page/definition/${term}`;
+    }
     get rendered_list() {
-        return this.state.response;
+        const ent = Object.entries( this.state.response );
+        return ent.map( ([languageCode, values]) => ({ languageCode, ...values[0] }) );
     }
     // AJAX
     submit(e) {
@@ -26,8 +31,8 @@ export default class Wiktionary extends React.Component {
     }
     ajax(term = "") {
         // Vars
-        const api = `https://en.wiktionary.org/api/rest_v1/page/definition/${term}`;
-        const request = async (api = `https://en.wiktionary.org/api/rest_v1/page/definition/${term}`) => {
+        const api = this.ajax_url(term);
+        const request = async (api = this.ajax_url(term)) => {
             const result = await fetch(api, { method: "GET" }).then( i => i.json() );
             return result;
         };
