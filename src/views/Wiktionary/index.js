@@ -5,13 +5,14 @@ import {
     TextField,
     IconButton,
 } from "@mui/material";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
+import "./index.css";
 
 export default class Wiktionary extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            term: "",
+            term: "Wiktionary",
             response: [],
         };
     }
@@ -30,15 +31,20 @@ export default class Wiktionary extends React.Component {
         });
     }
     set_term(e) {
-        this.setState({ term: e.target.value });
+        this.setState({ term: e.target.value.trim() });
     }
     render() {
         return (<div className="wiktionary-page">
-            <h1>
+            <h1 className="title">
                 <a href="https://en.wikipedia.org/wiki/Wiktionary" target="_blank" rel="noreferrer">Wiktionary</a>
             </h1>
-            <form onSubmit={e => this.ajax(e)} autoComplete="off">
-                <TextField label="Query word" variant="standard" name="term" onChange={e => this.set_term(e)} required />
+            <form onSubmit={e => this.ajax(e)} autoComplete="off" className="param-form">
+                <TextField
+                    label="Query word" variant="standard" name="term"
+                    required
+                    onChange={e => this.set_term(e)} 
+                    value={this.state.term}
+                />
                 <IconButton type="submit" aria-label="search">
                     <SearchIcon />
                 </IconButton>
