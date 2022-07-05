@@ -19,21 +19,25 @@ export default class Wiktionary extends React.Component {
     get rendered_list() {
         return this.state.response;
     }
-    // Set states
-    ajax(e) {
+    // AJAX
+    submit(e) {
+        e.preventDefault();
+        this.ajax(this.state.term);
+    }
+    ajax(term = "") {
         // Vars
-        const api = `https://en.wiktionary.org/api/rest_v1/page/definition/${this.state.term}`;
-        const request = async (api = `https://en.wiktionary.org/api/rest_v1/page/definition/${this.state.term}`) => {
+        const api = `https://en.wiktionary.org/api/rest_v1/page/definition/${term}`;
+        const request = async (api = `https://en.wiktionary.org/api/rest_v1/page/definition/${term}`) => {
             const result = await fetch(api, { method: "GET" }).then( i => i.json() );
             return result;
         };
         // Actions
-        e.preventDefault();
         this.set_response([]);
         request(api).then( response => {
             this.set_response( response );
         });
     }
+    // Set states
     set_response(response = []) {
         this.setState({ response });
     }
@@ -45,7 +49,7 @@ export default class Wiktionary extends React.Component {
             <h1 className="title">
                 <a href="https://en.wikipedia.org/wiki/Wiktionary" target="_blank" rel="noreferrer">Wiktionary</a>
             </h1>
-            <form onSubmit={e => this.ajax(e)} autoComplete="off" className="param-form">
+            <form onSubmit={e => this.submit(e)} autoComplete="off" className="param-form">
                 <TextField
                     label="Query word" variant="standard" name="term"
                     required
