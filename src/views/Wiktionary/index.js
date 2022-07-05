@@ -13,22 +13,29 @@ export default class Wiktionary extends React.Component {
         super(props);
         this.state = {
             term: "Wiktionary",
-            response: [],
+            response: {},
         };
     }
+    get rendered_list() {
+        return this.state.response;
+    }
+    // Set states
     ajax(e) {
         // Vars
         const api = `https://en.wiktionary.org/api/rest_v1/page/definition/${this.state.term}`;
-        const request = async (api = "https://en.wiktionary.org/api/rest_v1/page/definition/example") => {
+        const request = async (api = `https://en.wiktionary.org/api/rest_v1/page/definition/${this.state.term}`) => {
             const result = await fetch(api, { method: "GET" }).then( i => i.json() );
             return result;
         };
         // Actions
         e.preventDefault();
-        this.setState({ response: [] });
+        this.set_response([]);
         request(api).then( response => {
-            this.setState({ response });
+            this.set_response( response );
         });
+    }
+    set_response(response = []) {
+        this.setState({ response });
     }
     set_term(e) {
         this.setState({ term: e.target.value.trim() });
@@ -50,7 +57,7 @@ export default class Wiktionary extends React.Component {
                 </IconButton>
             </form>
             <Typography paragraph>
-                { JSON.stringify(this.state.response) }
+                { JSON.stringify(this.rendered_list) }
             </Typography>
         </div>);
     }
