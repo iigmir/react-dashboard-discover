@@ -31,13 +31,21 @@ export default class Wiktionary extends React.Component {
         // Vars
         const api = this.ajax_url(term);
         const request = async (api = this.ajax_url(term)) => {
-            const result = await fetch(api, { method: "GET" }).then( i => i.json() );
+            const result = await fetch(api, { method: "GET" }).then( my => {
+                if( my.status === 200 ) {
+                    return my.json();
+                } else {
+                    return Promise.reject( my.json() );
+                }
+            });
             return result;
         };
         // Actions
-        this.set_response([]);
+        this.set_response({});
         request(api).then( response => {
             this.set_response( response );
+        }).catch( err => {
+            this.set_error_message( err )
         });
     }
     // Set states
