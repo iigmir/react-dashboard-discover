@@ -58,7 +58,7 @@ export default class Wiktionary extends React.Component {
     }
     set_error_message(error_message) {
         this.setState({ error_message });
-        this.set_response([]);
+        this.set_response({});
     }
     set_term(e) {
         this.setState({ term: e.target.value.trim() });
