@@ -1,19 +1,50 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import {
+    Typography,
+    TextField,
+    IconButton,
+} from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 
 export default class Wiktionary extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            term: "",
+            response: [],
+        };
+    }
+    ajax(e) {
+        // Vars
+        const api = `https://en.wiktionary.org/api/rest_v1/page/definition/${this.state.term}`;
+        const request = async (api = "https://en.wiktionary.org/api/rest_v1/page/definition/example") => {
+            const result = await fetch(api, { method: "GET" }).then( i => i.json() );
+            return result;
+        };
+        // Actions
+        e.preventDefault();
+        this.setState({ response: [] });
+        request(api).then( response => {
+            this.setState({ response });
+        });
+    }
+    set_term(e) {
+        this.setState({ term: e.target.value });
     }
     render() {
-        return (<div>
+        return (<div className="wiktionary-page">
             <h1>
                 <a href="https://en.wikipedia.org/wiki/Wiktionary" target="_blank" rel="noreferrer">Wiktionary</a>
             </h1>
+            <form onSubmit={e => this.ajax(e)} autoComplete="off">
+                <TextField label="Query word" variant="standard" name="term" onChange={e => this.set_term(e)} required />
+                <IconButton type="submit" aria-label="search">
+                    <SearchIcon />
+                </IconButton>
+            </form>
             <Typography paragraph>
-                <Link to="/">Wiktionary</Link> is a multilingual, web-based project to create a free content dictionary of terms (including words, phrases, proverbs, linguistic reconstructions, etc.) in all natural languages and in a number of artificial languages. These entries may contain definitions, images for illustrations, pronunciations, etymologies, inflections, usage examples, quotations, related terms, and translations of words into other languages, among other features. It is collaboratively edited via a wiki. Its name is a portmanteau of the words wiki and dictionary. It is available in 183 languages and in Simple English. Like its sister project Wikipedia, Wiktionary is run by the Wikimedia Foundation, and is written collaboratively by volunteers, dubbed "Wiktionarians". Its wiki software, MediaWiki, allows almost anyone with access to the website to create and edit entries.
+                { JSON.stringify(this.state.response) }
             </Typography>
         </div>);
     }
